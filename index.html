@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Road to Becoming Multi Millionaires</title>
+<link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Nunito:wght@600;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg1:#fff3c4; --bg2:#c9f2c7; --ink:#17421f; --card:#ffffffd9; --gold:#f5b400; --green:#1f9d4c; --pink:#ff5d8f; --tile:#17421f; --tileink:#fff3c4;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg1:#0f2a17; --bg2:#173d22; --ink:#fff3c4; --card:#0f2a17d9; --tile:#f5b400; --tileink:#2a1c00; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{--bg1:#0f2a17; --bg2:#173d22; --ink:#fff3c4; --card:#0f2a17d9; --tile:#f5b400; --tileink:#2a1c00; color-scheme:dark;}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;min-height:100vh;font-family:"Nunito",system-ui,sans-serif;font-weight:600;color:var(--ink);
+  background:linear-gradient(160deg,var(--bg1),var(--bg2));background-color:var(--bg1);overflow-x:hidden}
+#sky{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+.fall,.balloon{position:absolute;will-change:transform}
+.fall{top:-60px;animation:fall linear infinite}
+@keyframes fall{to{transform:translateY(115vh) rotate(360deg)}}
+.balloon{bottom:-160px;width:54px;height:68px;border-radius:50% 50% 48% 48%;animation:rise ease-in infinite;opacity:.9}
+.balloon::after{content:"";position:absolute;left:50%;top:100%;width:2px;height:60px;background:currentColor;opacity:.5}
+.balloon::before{content:"";position:absolute;left:12px;top:10px;width:12px;height:18px;border-radius:50%;background:#fff7;transform:rotate(25deg)}
+@keyframes rise{to{transform:translateY(-125vh) translateX(var(--dx))}}
+main{position:relative;z-index:1;max-width:760px;margin:0 auto;padding:28px 18px 56px;text-align:center}
+h1{font-family:"Bagel Fat One",system-ui,sans-serif;font-weight:400;font-size:clamp(2rem,7.5vw,3.6rem);line-height:1.05;margin:8px 0 6px;
+  text-shadow:3px 3px 0 var(--gold)}
+.sub{font-weight:800;margin:0 0 22px;font-size:1.05rem}
+.clock{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:0 auto 10px}
+.tile{background:var(--tile);color:var(--tileink);border-radius:20px;padding:14px 4px;transform:rotate(var(--r,0deg));box-shadow:0 6px 0 #0003}
+.tile:nth-child(1){--r:-2deg}.tile:nth-child(2){--r:1.5deg}.tile:nth-child(3){--r:-1deg}.tile:nth-child(4){--r:2deg}
+.tile b{display:block;font-family:"Bagel Fat One",sans-serif;font-weight:400;font-size:clamp(1.8rem,8vw,3.2rem);line-height:1}
+.tile span{font-size:.85rem;font-weight:800}
+.deadline{font-weight:800;margin:0 0 26px}
+.panel{background:var(--card);border:3px dashed var(--green);border-radius:26px;padding:22px 16px;backdrop-filter:blur(4px)}
+h2{font-family:"Bagel Fat One",sans-serif;font-weight:400;font-size:1.7rem;margin:0 0 14px}
+ul{list-style:none;margin:0 0 18px;padding:0;display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+li{background:var(--gold);color:#2a1c00;font-weight:800;font-size:1.15rem;padding:10px 12px 10px 16px;border-radius:999px;display:flex;align-items:center;gap:8px;animation:pop .45s cubic-bezier(.3,1.6,.5,1)}
+li button{border:0;background:#0002;color:inherit;width:24px;height:24px;border-radius:50%;cursor:pointer;font-size:.9rem;line-height:1;padding:0}
+li button:hover{background:#0004}
+@keyframes pop{from{transform:scale(.3);opacity:0}}
+.add{display:flex;gap:8px;max-width:440px;margin:0 auto}
+input{flex:1;min-width:0;font:inherit;font-weight:800;padding:12px 16px;border-radius:999px;border:3px solid var(--green);background:#fff;color:#17421f}
+.go{font:inherit;font-weight:800;border:0;border-radius:999px;padding:12px 20px;background:var(--pink);color:#fff;cursor:pointer;box-shadow:0 4px 0 #0003}
+.go:active{transform:translateY(3px);box-shadow:0 1px 0 #0003}
+:focus-visible{outline:3px solid var(--pink);outline-offset:2px}
+.done{font-family:"Bagel Fat One",sans-serif;font-size:1.6rem;margin:0 0 20px;display:none}
+.empty{opacity:.8;margin:0 0 14px}
+@media (prefers-reduced-motion:reduce){.fall,.balloon,li{animation:none}.fall,.balloon{display:none}}
+</style>
+</head>
+<body>
+<div id="sky" aria-hidden="true"></div>
+<main>
+  <h1>🎈 Road to Becoming Multi Millionaires 💰</h1>
+  <p class="sub">11 days to go. Who’s next?</p>
+
+  <div class="clock" role="timer" aria-live="off">
+    <div class="tile"><b id="d">00</b><span>days</span></div>
+    <div class="tile"><b id="h">00</b><span>hours</span></div>
+    <div class="tile"><b id="m">00</b><span>minutes</span></div>
+    <div class="tile"><b id="s">00</b><span>seconds</span></div>
+  </div>
+  <p class="deadline" id="deadline">Ends Wednesday, 4 November 2026</p>
+  <p class="done" id="done">🎉 Time’s up! Look at that crew below! 🎉</p>
+
+  <section class="panel">
+    <h2>👑 Our Millionaires</h2>
+    <ul id="list"></ul>
+    <p class="empty" id="empty" hidden>No names yet. Add the first one below.</p>
+    <div class="add">
+      <input id="name" type="text" maxlength="40" placeholder="New millionaire’s name" aria-label="New millionaire’s name" autocomplete="off">
+      <button class="go" id="addBtn" type="button">Add 🎉</button>
+    </div>
+  </section>
+</main>
+
+<script>
+(function(){
+  // Countdown ends at the end of the 11th day from 24 October 2026
+  var END = new Date(2026, 10, 4, 23, 59, 59).getTime();
+  var KEY = "millionaires-v1";
+  var names = ["Nody", "Lovemore"];
+  try { var saved = JSON.parse(localStorage.getItem(KEY)); if (Array.isArray(saved) && saved.length) names = saved; } catch(e) {}
+
+  function pad(n){ return String(n).padStart(2,"0"); }
+  function tick(){
+    var left = Math.max(0, END - Date.now());
+    var s = Math.floor(left/1000);
+    document.getElementById("d").textContent = pad(Math.floor(s/86400));
+    document.getElementById("h").textContent = pad(Math.floor(s%86400/3600));
+    document.getElementById("m").textContent = pad(Math.floor(s%3600/60));
+    document.getElementById("s").textContent = pad(s%60);
+    if (left === 0) document.getElementById("done").style.display = "block";
+  }
+  tick(); setInterval(tick, 1000);
+
+  function save(){ try { localStorage.setItem(KEY, JSON.stringify(names)); } catch(e) {} }
+  var list = document.getElementById("list"), empty = document.getElementById("empty");
+  function render(){
+    list.innerHTML = "";
+    names.forEach(function(n, i){
+      var li = document.createElement("li");
+      li.appendChild(document.createTextNode("💰 " + n));
+      var b = document.createElement("button");
+      b.type = "button"; b.textContent = "×"; b.setAttribute("aria-label", "Remove " + n);
+      b.onclick = function(){ names.splice(i,1); save(); render(); };
+      li.appendChild(b); list.appendChild(li);
+    });
+    empty.hidden = names.length > 0;
+  }
+  render();
+
+  var input = document.getElementById("name");
+  function add(){
+    var v = input.value.trim();
+    if (!v) { input.focus(); return; }
+    names.push(v); input.value = ""; save(); render(); burst(); input.focus();
+  }
+  document.getElementById("addBtn").onclick = add;
+  input.addEventListener("keydown", function(e){ if (e.key === "Enter") add(); });
+
+  // Background: falling money and rising balloons
+  var sky = document.getElementById("sky");
+  var money = ["💵","💰","🤑","💸","🪙","💎"];
+  var colors = ["#ff5d8f","#f5b400","#2bb3ff","#8e5cff","#1f9d4c","#ff8a3d"];
+  function el(cls){ var e = document.createElement("div"); e.className = cls; sky.appendChild(e); return e; }
+  for (var i = 0; i < 22; i++) {
+    var f = el("fall");
+    f.textContent = money[i % money.length];
+    f.style.left = Math.random()*100 + "%";
+    f.style.fontSize = (22 + Math.random()*22) + "px";
+    f.style.animationDuration = (9 + Math.random()*9) + "s";
+    f.style.animationDelay = (-Math.random()*18) + "s";
+  }
+  for (var j = 0; j < 9; j++) {
+    var b = el("balloon"), c = colors[j % colors.length];
+    b.style.background = c; b.style.color = c;
+    b.style.left = (3 + j*11 + Math.random()*5) + "%";
+    b.style.setProperty("--dx", (Math.random()*60 - 30) + "px");
+    b.style.animationDuration = (12 + Math.random()*10) + "s";
+    b.style.animationDelay = (-Math.random()*20) + "s";
+  }
+  function burst(){
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    for (var k = 0; k < 24; k++) {
+      var p = document.createElement("div");
+      p.textContent = k % 2 ? "💸" : "🎉";
+      p.style.cssText = "position:fixed;left:50%;top:60%;font-size:26px;pointer-events:none;z-index:5;transition:transform 1.2s ease-out,opacity 1.2s";
+      document.body.appendChild(p);
+      (function(p){
+        var a = Math.random()*Math.PI*2, d = 120 + Math.random()*180;
+        requestAnimationFrame(function(){
+          p.style.transform = "translate(" + Math.cos(a)*d + "px," + (Math.sin(a)*d - 120) + "px) rotate(" + (Math.random()*360) + "deg)";
+          p.style.opacity = "0";
+        });
+        setTimeout(function(){ p.remove(); }, 1300);
+      })(p);
+    }
+  }
+})();
+</script>
+</body>
+</html>
